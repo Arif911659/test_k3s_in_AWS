@@ -19,3 +19,17 @@ map_public_ip_on_launch=True, availability_zone='ap-southeast-la',
 
 # Add IGW
 igw = aws.ec2.InternetGateway ("igw", vpc_id=vpc.id)
+
+
+# Create Route Table
+route_table = aws.ec2.RouteTable("route-table",
+vpc_id=vpc.id,
+routes=[{
+"cidr_block": "0.0.0.0/0", "gateway_id": igw.id,
+}],
+)
+# Associate Route Table with Public Subnet
+rt_assoc_public = aws.ec2.RouteTableAssociation ("rt-assoc-public",
+subnet_id=public_subnet.id,
+route_table_id=route_table.id,
+)
