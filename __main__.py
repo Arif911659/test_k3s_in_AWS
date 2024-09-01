@@ -63,3 +63,21 @@ security_group = aws.ec2.SecurityGroup("web-secgrp",
         "cidr_blocks": ["0.0.0.0/0"],
         }],
 )
+
+
+# Create instances in the VPC and subnet
+ami_id = "ami-008c09a18 ce321b3c" # Replace with a valid AMI ID for your region
+instance_type = "t3.small"
+
+
+# Create instances for Master-Node
+master_node =
+aws.ec2.Instance("master-node",
+    instance_type=instance_type,
+    ami=ami_id,
+    subnet_id=public_subnet.id,
+    key_name=key_pair.key_name, # Replace with a valid key_pair.key_name
+    vpc_security_group_ids=[security_group.id],
+    tags={
+    "Name": "master-node"
+})
