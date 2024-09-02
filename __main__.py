@@ -30,10 +30,11 @@ public_subnet = aws.ec2.Subnet("public-subnet",
 )
 
 
-# Add IGW
-igw = aws.ec2.InternetGateway ("igw", vpc_id=vpc.id
+# Adding the Internet Gateway with a Name tag
+igw = aws.ec2.InternetGateway("igw",
+    vpc_id=vpc.id,
     tags={
-        "Name": "my-igw-name"  # Replace "my-igw-name" with the desired name
+        "Name": "my-igw-name"  # Replace with your desired IGW name
     }
 )
 
