@@ -104,3 +104,7 @@ master_node = aws.ec2.Instance("master-node",
     tags={
     "Name": "master-node"
 })
+
+
+# Export outputs
+pulumi.export("master_public_ip", master_node.public_ip)
