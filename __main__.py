@@ -8,6 +8,9 @@ vpc = aws.ec2.Vpc("my-vpc",
     cidr_block="10.10.0.0/16",
     enable_dns_hostnames=True,
     enable_dns_support=True,
+    tags={
+        "Name": "my-vpc-name"  # Replace "my-vpc-name" with the desired name
+        }
     )
 
 # Add public_subnet
