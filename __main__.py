@@ -31,8 +31,11 @@ public_subnet = aws.ec2.Subnet("public-subnet",
 
 
 # Add IGW
-igw = aws.ec2.InternetGateway ("igw", vpc_id=vpc.id)
-
+igw = aws.ec2.InternetGateway ("igw", vpc_id=vpc.id
+    tags={
+        "Name": "my-igw-name"  # Replace "my-igw-name" with the desired name
+    }
+)
 
 # Create Route Table
 route_table = aws.ec2.RouteTable("route-table",
