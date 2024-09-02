@@ -76,8 +76,7 @@ key_pair = aws.ec2.KeyPair("my-key-pair",
     public_key=public_key)
 
 # Create instances for Master-Node
-master_node =
-aws.ec2.Instance("master-node",
+master_node = aws.ec2.Instance("master-node",
     instance_type=instance_type,
     ami=ami_id,
     subnet_id=public_subnet.id,
