@@ -2,7 +2,7 @@
 
 import pulumi
 import pulumi_aws as aws
-
+import os
 # Add vpc
 vpc = aws.ec2.Vpc("my-vpc",
     cidr_block="10.10.0.0/16",
@@ -69,6 +69,9 @@ security_group = aws.ec2.SecurityGroup("web-secgrp",
 ami_id = "ami-01811d4912b4ccb26" # Replace with a valid AMI ID for your region
 instance_type = "t3.small"
 
+
+# Read the public key from the environment (set by GitHub Actions).
+public_key = os.getenv("PUBLIC_KEY")
 
 # Create the EC2 KeyPair using the public key 
 key_pair = aws.ec2.KeyPair("my-key-pair",
