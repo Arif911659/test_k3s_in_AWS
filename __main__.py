@@ -14,12 +14,21 @@ vpc = aws.ec2.Vpc("my-vpc",
     )
 
 # Add public_subnet
+# public_subnet = aws.ec2.Subnet("public-subnet",
+#     vpc_id = vpc.id,
+#     cidr_block= "10.10.1.0/24",
+#     map_public_ip_on_launch=True, 
+#     availability_zone='ap-southeast-la',
+#     )
 public_subnet = aws.ec2.Subnet("public-subnet",
-    vpc_id = vpc.id,
-    cidr_block= "10.10.1.0/24",
-    map_public_ip_on_launch=True, 
-    availability_zone='ap-southeast-la',
-    )
+    vpc_id=vpc.id,
+    cidr_block="10.10.1.0/24",
+    availability_zone="ap-southeast-1a",  # Use a valid availability zone
+    tags={
+        "Name": "public-subnet",
+    }
+)
+
 
 # Add IGW
 igw = aws.ec2.InternetGateway ("igw", vpc_id=vpc.id)
