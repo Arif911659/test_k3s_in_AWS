@@ -66,9 +66,14 @@ security_group = aws.ec2.SecurityGroup("web-secgrp",
 
 
 # Create instances in the VPC and subnet
-ami_id = "ami-008c09a18 ce321b3c" # Replace with a valid AMI ID for your region
+ami_id = "ami-01811d4912b4ccb26" # Replace with a valid AMI ID for your region
 instance_type = "t3.small"
 
+
+# Create the EC2 KeyPair using the public key 
+key_pair = aws.ec2.KeyPair("my-key-pair",
+    key_name="my-key-pair", 
+    public_key=public_key)
 
 # Create instances for Master-Node
 master_node =
