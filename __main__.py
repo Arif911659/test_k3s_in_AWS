@@ -106,6 +106,43 @@ master_node = aws.ec2.Instance("master-node",
     "Name": "master-node"
 })
 
+# Create worker node 1
+worker_node_1 = aws.ec2.Instance("worker-node-1",
+    instance_type=instance_type,
+    ami=ami_id,  						# Replace with the desired AMI ID
+    subnet_id=public_subnet.id,     	# Ensure this is the public subnet
+    associate_public_ip_address=True,   # Automatically assigns a public IP
+    vpc_security_group_ids=[security_group.id],  	 # Add security groups as needed
+    key_name=key_pair.key_name,  					 # Replace with your SSH key pair name
+    tags={
+        "Name": "worker-node-1"
+    }
+)
+
+# Create worker node 2
+worker_node_2 = aws.ec2.Instance("worker-node-2",
+    instance_type=instance_type,
+    ami=ami_id,  						# Replace with the desired AMI ID
+    subnet_id=public_subnet.id,     	# Ensure this is the public subnet
+    associate_public_ip_address=True,   # Automatically assigns a public IP
+    vpc_security_group_ids=[security_group.id],  	 # Add security groups as needed
+    key_name=key_pair.key_name,  					 # Replace with your SSH key pair name
+    tags={
+        "Name": "worker-node-2"
+    }
+)
+
+# Create Nginx instance
+nginx_instance = aws.ec2.Instance("nginx-instance", 
+	instance_type=instance_type,
+	ami=ami_id,
+	subnet_id=public_subnet.id,
+	key_name=key_pair.key_name, I
+	vpc_security_group_ids=[security_group.id],
+	tags={
+		"Name": "nginx-instance"
+	}
+)
 
 # Export outputs
 pulumi.export("master_public_ip", master_node.public_ip)
