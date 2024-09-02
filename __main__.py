@@ -150,3 +150,4 @@ pulumi.export("master_public_ip", master_node.public_ip)
 pulumi.export("worker1_public_ip", worker_node_1.public_ip)
 pulumi.export("worker2_public_ip", worker_node_2.public_ip)
 pulumi.export("nginx_instance", nginx_instance.public_ip)
+
