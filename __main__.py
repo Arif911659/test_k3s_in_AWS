@@ -137,7 +137,7 @@ nginx_instance = aws.ec2.Instance("nginx-instance",
 	instance_type=instance_type,
 	ami=ami_id,
 	subnet_id=public_subnet.id,
-	key_name=key_pair.key_name, I
+	key_name=key_pair.key_name,
 	vpc_security_group_ids=[security_group.id],
 	tags={
 		"Name": "nginx-instance"
